@@ -79,7 +79,7 @@ def checkData(data,activity):
 
     if data is not None:
         data = data >>8    
-        if and format(data, 'x') in rfIDs:
+        if format(data, 'x') in rfIDs:
             logging.debug('Success %s: %s:%s', activity, format(data, 'x'), rfIDs[format(data, 'x')])
             openGate()
         else:
