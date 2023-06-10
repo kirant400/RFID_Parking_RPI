@@ -18,8 +18,9 @@ Wiring your RFID RC522 to your Raspberry Pi is fairly simple, with it requiring 
 -   **3.3v** connects to **Pin 1**.
 -  **RELAY** connects to **Pin 31**.
 
-![Pi PIO inout](images/pinout.png)
+![Pi PIO inout](images/connection1.png)
 
+![Pi PIO inout](images/connection2.png)
 
 ## Instructions:
 
