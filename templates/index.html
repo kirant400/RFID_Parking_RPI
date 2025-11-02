@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gate Controller</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .messages {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: left;
+            line-height: 1.5;
+        }
+        button {
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            padding: 16px 32px;
+            margin: 12px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .open-gate-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            font-size: 1.6em;
+            padding: 20px 40px;
+            display: block;
+            width: 100%;
+            margin: 30px 0;
+        }
+        .open-gate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.3);
+        }
+        .reboot-btn {
+            background: linear-gradient(135deg, #f44336, #da190b);
+            color: white;
+            font-size: 1.1em;
+            padding: 14px 28px;
+        }
+        .reboot-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(244, 67, 54, 0.3);
+        }
+        .manage-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .manage-btn {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            font-size: 1em;
+            padding: 14px 24px;
+            min-width: 160px;
+        }
+        .manage-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.3);
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 40px 0;
+        }
+        @media (max-width: 500px) {
+            .manage-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .manage-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gate Controller</h1>
+        <p class="subtitle">Control your gate and manage access lists</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="messages">
+              {% for msg in messages %}{{ msg }}<br>{% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form action="/open_gate" method="post">
+            <button type="submit" class="open-gate-btn">🚪 Open Gate</button>
+        </form>
+
+        <form action="/reboot" method="post" onsubmit="return confirm('Reboot the Raspberry Pi now?');">
+            <button type="submit" class="reboot-btn">🔄 Reboot System</button>
+        </form>
+
+        <hr>
+
+        <div class="manage-section">
+            <form action="/phoneOn" method="get">
+                <button type="submit" class="manage-btn">📱 Manage Phones</button>
+            </form>
+            <form action="/rfid" method="get">
+                <button type="submit" class="manage-btn">🏷️ Manage RFID</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

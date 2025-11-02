@@ -1,8 +1,7 @@
 #!/bin/sh
 
-COMMAND="/usr/bin/python3 /home/hmd82/parking/Read.py |tee debug.txt"
-
-LOGFILE=restart.txt
+COMMAND="/usr/bin/python3 /home/hmd82/parking/Call.py"
+LOGFILE=restartCalling.txt
 
 writelog() {
   now=`date`
